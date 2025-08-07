@@ -100,10 +100,12 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255,140,0,0.6);
 }
+/* Desktop-only button */
 .btn-connect-wallet.desktop {
   display: inline-block;
   margin-left: auto;
 }
+/* Mobile-only button (inside menu) */
 .btn-connect-wallet.mobile {
   display: none;
 }
@@ -150,11 +152,11 @@
     box-shadow: none;
     max-height: none;
   }
-  /* Show mobile wallet inside menu */
+  /* Hide desktop button, show mobile only when open */
   .btn-connect-wallet.desktop {
     display: none;
   }
-  .btn-connect-wallet.mobile {
+  .main-nav.open .btn-connect-wallet.mobile {
     display: block;
     width: calc(100% - 2rem);
     margin: 1rem;
