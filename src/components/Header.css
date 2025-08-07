@@ -14,6 +14,7 @@
 .header-logo {
   width: 160px;
   transition: transform 0.2s ease;
+  margin-right: 1rem;
 }
 .header-logo:hover {
   transform: scale(1.05);
@@ -25,12 +26,13 @@
   border: none;
   font-size: 1.8rem;
   color: #FFF;
-  margin-left: 1rem;
+  margin-right: 1rem;
   z-index: 110;
 }
 .main-nav {
   display: flex;
-  margin-left: 2rem;
+  align-items: center;
+  margin-right: 1rem;
 }
 .nav-list {
   display: flex;
@@ -47,10 +49,10 @@
 }
 .nav-item > a:hover,
 .nav-item > span:hover {
-  color: var(--orange);
+  color: var(--color-primary);
 }
 .nav-item > a.active {
-  color: var(--orange);
+  color: var(--color-primary);
 }
 .dropdown {
   position: relative;
@@ -67,6 +69,7 @@
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   min-width: 180px;
+  z-index: 120;
 }
 .dropdown-menu li a {
   color: #FFF;
@@ -82,10 +85,9 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-/* Connect Wallet button */
+/* Connect Wallet buttons */
 .btn-connect-wallet {
-  margin-left: auto;
-  background: var(--orange);
+  background: var(--color-primary);
   color: #000;
   padding: 0.5rem 1rem;
   border: none;
@@ -98,6 +100,15 @@
 .btn-connect-wallet:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255,140,0,0.6);
+}
+.btn-connect-wallet.desktop {
+  display: inline-block;
+  margin-left: auto;
+}
+.btn-connect-wallet.mobile {
+  display: none;
+  width: 90%;
+  margin: var(--spacing-sm) auto;
 }
 /* Responsive mobile */
 @media (max-width: 768px) {
@@ -125,7 +136,6 @@
   .nav-item > a,
   .nav-item > span {
     padding: 1rem 1.5rem;
-    border-top: 1px solid #333;
   }
   .dropdown-menu {
     position: static;
@@ -134,5 +144,12 @@
     box-shadow: none;
     padding-left: 1rem;
     margin: 0;
+  }
+  /* Hide desktop button, show mobile */
+  .btn-connect-wallet.desktop {
+    display: none;
+  }
+  .btn-connect-wallet.mobile {
+    display: block;
   }
 }

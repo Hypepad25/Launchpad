@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainLogo from '../assets/hypepad-logo.png';
@@ -102,13 +101,14 @@ const Header = () => {
               </ul>
             </li>
           </ul>
+          {/* Mobile Connect Wallet */}
+          <button className="btn-connect-wallet mobile">Connect Wallet</button>
         </nav>
 
-        {/* Connect Wallet */}
-        <button className="btn-connect-wallet">Connect Wallet</button>
+        {/* Desktop Connect Wallet */}
+        <button className="btn-connect-wallet desktop">Connect Wallet</button>
       </div>
     </header>
-  );
-};
+);
 
 export default Header;
