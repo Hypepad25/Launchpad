@@ -8,10 +8,8 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef(null);
 
-  // Toggle mobile nav
   const toggleMobile = () => setMobileOpen(open => !open);
 
-  // Close menu when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
       if (
@@ -30,12 +28,10 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header-container">
-        {/* Logo */}
         <NavLink to="/" className="logo">
           <img src={MainLogo} alt="HYPEPAD" className="header-logo" />
         </NavLink>
 
-        {/* Hamburger toggle */}
         <button
           className="mobile-toggle"
           aria-label="Toggle menu"
@@ -44,45 +40,40 @@ export default function Header() {
           ☰
         </button>
 
-        {/* Nav links */}
         <nav
           ref={navRef}
           className={`main-nav${mobileOpen ? ' open' : ''}`}
         >
           <ul className="nav-list">
-            <li className="nav-item">
+            <li>
               <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
                 Home
               </NavLink>
             </li>
-
-            <li className="nav-item dropdown">
-              <span>Platform</span>
+            <li className="dropdown">
+              <span>Platform ▾</span>
               <ul className="dropdown-menu">
                 <li><NavLink to="/launchpad">Launchpad</NavLink></li>
                 <li><NavLink to="/presale">Presale</NavLink></li>
               </ul>
             </li>
-
-            <li className="nav-item dropdown">
-              <span>Create</span>
+            <li className="dropdown">
+              <span>Create ▾</span>
               <ul className="dropdown-menu">
                 <li><NavLink to="/token-creator">Token Creator</NavLink></li>
                 <li><NavLink to="/meme-creator">Meme Creator</NavLink></li>
               </ul>
             </li>
-
-            <li className="nav-item dropdown">
-              <span>Engage</span>
+            <li className="dropdown">
+              <span>Engage ▾</span>
               <ul className="dropdown-menu">
                 <li><NavLink to="/staking">Staking</NavLink></li>
                 <li><NavLink to="/leaderboard">Leaderboard</NavLink></li>
                 <li><NavLink to="/trending">Trending</NavLink></li>
               </ul>
             </li>
-
-            <li className="nav-item dropdown">
-              <span>Resources</span>
+            <li className="dropdown">
+              <span>Resources ▾</span>
               <ul className="dropdown-menu">
                 <li><NavLink to="/kyc">KYC</NavLink></li>
                 <li><NavLink to="/referrals">Referrals</NavLink></li>
@@ -90,30 +81,23 @@ export default function Header() {
                 <li><NavLink to="/whitepaper">Whitepaper</NavLink></li>
               </ul>
             </li>
-
-            <li className="nav-item dropdown">
-              <span>Support</span>
+            <li className="dropdown">
+              <span>Support ▾</span>
               <ul className="dropdown-menu">
                 <li><a href="mailto:contact@hypepad.app">Email Us</a></li>
-                <li>
-                  <a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer">
-                    Telegram
-                  </a>
-                </li>
+                <li><a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer">Telegram</a></li>
               </ul>
             </li>
-          </ul>
 
-          {/* Mobile Connect Wallet button */}
-          <button className="btn-connect-wallet mobile">
-            Connect Wallet
-          </button>
+            {/* Mobile-only Connect */}
+            <li className="mobile-wallet">
+              <button className="btn-connect-wallet">Connect Wallet</button>
+            </li>
+          </ul>
         </nav>
 
-        {/* Desktop Connect Wallet button */}
-        <button className="btn-connect-wallet desktop">
-          Connect Wallet
-        </button>
+        {/* Desktop-only Connect */}
+        <button className="btn-connect-wallet desktop">Connect Wallet</button>
       </div>
     </header>
 );
