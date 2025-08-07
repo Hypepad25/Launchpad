@@ -1,18 +1,19 @@
+// src/components/Header.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainLogo from '../assets/hypepad-logo.png';
 import './Header.css';
 
-const Header = () => {
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef(null);
 
   // Toggle mobile nav
   const toggleMobile = () => setMobileOpen(open => !open);
 
-  // Close when clicking outside
+  // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    function handleClickOutside(e) {
       if (
         mobileOpen &&
         navRef.current &&
@@ -21,7 +22,7 @@ const Header = () => {
       ) {
         setMobileOpen(false);
       }
-    };
+    }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [mobileOpen]);
@@ -34,22 +35,27 @@ const Header = () => {
           <img src={MainLogo} alt="HYPEPAD" className="header-logo" />
         </NavLink>
 
-        {/* Mobile toggle */}
-        <button className="mobile-toggle" onClick={toggleMobile}>
+        {/* Hamburger toggle */}
+        <button
+          className="mobile-toggle"
+          aria-label="Toggle menu"
+          onClick={toggleMobile}
+        >
           ☰
         </button>
 
-        {/* Navigation */}
-        <nav ref={navRef} className={`main-nav ${mobileOpen ? 'open' : ''}`}>
+        {/* Nav links */}
+        <nav
+          ref={navRef}
+          className={`main-nav${mobileOpen ? ' open' : ''}`}
+        >
           <ul className="nav-list">
-            {/* Home link */}
             <li className="nav-item">
               <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
                 Home
               </NavLink>
             </li>
 
-            {/* Platform dropdown */}
             <li className="nav-item dropdown">
               <span>Platform</span>
               <ul className="dropdown-menu">
@@ -58,7 +64,6 @@ const Header = () => {
               </ul>
             </li>
 
-            {/* Create dropdown */}
             <li className="nav-item dropdown">
               <span>Create</span>
               <ul className="dropdown-menu">
@@ -67,7 +72,6 @@ const Header = () => {
               </ul>
             </li>
 
-            {/* Engage dropdown */}
             <li className="nav-item dropdown">
               <span>Engage</span>
               <ul className="dropdown-menu">
@@ -77,7 +81,6 @@ const Header = () => {
               </ul>
             </li>
 
-            {/* Resources dropdown */}
             <li className="nav-item dropdown">
               <span>Resources</span>
               <ul className="dropdown-menu">
@@ -88,7 +91,6 @@ const Header = () => {
               </ul>
             </li>
 
-            {/* Support dropdown */}
             <li className="nav-item dropdown">
               <span>Support</span>
               <ul className="dropdown-menu">
@@ -101,14 +103,18 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          {/* Mobile Connect Wallet */}
-          <button className="btn-connect-wallet mobile">Connect Wallet</button>
+
+          {/* Mobile Connect Wallet button */}
+          <button className="btn-connect-wallet mobile">
+            Connect Wallet
+          </button>
         </nav>
 
-        {/* Desktop Connect Wallet */}
-        <button className="btn-connect-wallet desktop">Connect Wallet</button>
+        {/* Desktop Connect Wallet button */}
+        <button className="btn-connect-wallet desktop">
+          Connect Wallet
+        </button>
       </div>
     </header>
 );
-
-export default Header;
+}
