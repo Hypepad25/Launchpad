@@ -1,31 +1,5 @@
-.hero-banner {
-  text-align: center;
-  padding: 4rem 1rem;
-  background: var(--hero-bg-gradient);
-}
-.hero-banner-logo {
-  width: 250px;
-  max-width: 80%;
-  margin: 0 auto 1.5rem;
-  display: block;
-}
-.hero-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #fff;
-}
-.hero-subtitle {
-  font-size: 1.25rem;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 1.5;
-  color: #ddd;
-}
-.btn-primary {
-  padding: 0.75rem 2rem;
-  font-size: 1.125rem;
-  background: var(--orange);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+.hero-banner{text-align:center;padding:4rem 1rem;background:var(--hero-bg-gradient);}
+.hero-banner-logo{width:250px;max-width:80%;margin:0 auto 1.5rem;display:block;}
+.hero-title{font-size:3rem;margin-bottom:1rem;color:#fff;}
+.hero-subtitle{font-size:1.25rem;max-width:700px;margin:0 auto 2rem;line-height:1.5;color:#ddd;}
+.btn-primary{padding:.75rem 2rem;font-size:1.125rem;background:var(--orange);border:none;border-radius:4px;cursor:pointer;}
