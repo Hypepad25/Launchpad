@@ -1,7 +1,145 @@
-.header{background:#000;padding:1rem 0;border-bottom:1px solid #333;}
-.header-container{display:flex;align-items:center;justify-content:space-between;}
-.header-logo{width:150px;max-width:100%;}
-.main-nav .nav-list{list-style:none;display:flex;gap:1.5rem;}
-.main-nav .nav-list li a{color:#fff;text-decoration:none;font-weight:500;}
-.main-nav .nav-list li a.active{color:var(--orange);}
-.btn-connect-wallet{background:var(--orange);color:#000;padding:.5rem 1rem;border:none;border-radius:4px;cursor:pointer;}
+/* Base header styling */
+.header {
+  background-color: #000;
+  border-bottom: 1px solid #333;
+  position: relative;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+/* Logo */
+.header-logo {
+  width: 150px;
+  height: auto;
+}
+
+/* Mobile hamburger — hidden on desktop */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-left: 1rem;
+}
+
+/* Nav wrapper */
+.main-nav {
+  display: flex;
+  margin-left: 2rem;
+}
+
+/* Nav list & items */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-item > a,
+.nav-item > span {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: block;
+}
+
+/* Active link styling */
+.nav-item > a.active {
+  color: var(--orange);
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #111;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 180px;
+  border: 1px solid #333;
+}
+
+.dropdown-menu li a {
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Show dropdown on hover (desktop) */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Connect Wallet button */
+.btn-connect-wallet {
+  margin-left: auto;
+  background: var(--orange);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ------------------------------------------
+   Responsive (mobile) 
+------------------------------------------ */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  /* Collapse nav by default */
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  /* Expanded when open */
+  .main-nav.open {
+    max-height: 500px; /* big enough to show all links */
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-item > a,
+  .nav-item > span {
+    padding: 1rem;
+  }
+
+  /* Dropdown menus expand inline on mobile */
+  .dropdown-menu {
+    position: static;
+    border: none;
+    background: #111;
+  }
+}
