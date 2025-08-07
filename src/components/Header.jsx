@@ -1,3 +1,4 @@
+// src/components/Header.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainLogo from '../assets/hypepad-logo.png';
@@ -48,6 +49,7 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
+
             {/* Platform dropdown */}
             <li className="nav-item dropdown">
               <span>Platform</span>
@@ -56,6 +58,7 @@ const Header = () => {
                 <li><NavLink to="/presale">Presale</NavLink></li>
               </ul>
             </li>
+
             {/* Create dropdown */}
             <li className="nav-item dropdown">
               <span>Create</span>
@@ -64,6 +67,7 @@ const Header = () => {
                 <li><NavLink to="/meme-creator">Meme Creator</NavLink></li>
               </ul>
             </li>
+
             {/* Engage dropdown */}
             <li className="nav-item dropdown">
               <span>Engage</span>
@@ -73,6 +77,7 @@ const Header = () => {
                 <li><NavLink to="/trending">Trending</NavLink></li>
               </ul>
             </li>
+
             {/* Resources dropdown */}
             <li className="nav-item dropdown">
               <span>Resources</span>
@@ -83,6 +88,7 @@ const Header = () => {
                 <li><NavLink to="/whitepaper">Whitepaper</NavLink></li>
               </ul>
             </li>
+
             {/* Support dropdown */}
             <li className="nav-item dropdown">
               <span>Support</span>
@@ -102,6 +108,7 @@ const Header = () => {
         <button className="btn-connect-wallet">Connect Wallet</button>
       </div>
     </header>
-);
+  );
+};
 
 export default Header;
