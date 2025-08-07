@@ -47,6 +47,13 @@ const Header = () => {
                 <li><NavLink to="/whitepaper">Whitepaper</NavLink></li>
               </ul>
             </li>
+            <li className="nav-item dropdown">
+              <span>Support</span>
+              <ul className="dropdown-menu">
+                <li><a href="mailto:contact@hypepad.app">Email Us</a></li>
+                <li><a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
         <button className="btn-connect-wallet">Connect Wallet</button>
