@@ -1,5 +1,39 @@
-.hero-banner{text-align:center;padding:4rem 1rem;background:var(--hero-bg-gradient);}
-.hero-banner-logo{width:250px;max-width:80%;margin:0 auto 1.5rem;display:block;}
-.hero-title{font-size:3rem;margin-bottom:1rem;color:#fff;}
-.hero-subtitle{font-size:1.25rem;max-width:700px;margin:0 auto 2rem;line-height:1.5;color:#ddd;}
-.btn-primary{padding:.75rem 2rem;font-size:1.125rem;background:var(--orange);border:none;border-radius:4px;cursor:pointer;}
+.hero-banner {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, var(--color-bg), var(--color-bg-alt), var(--color-bg));
+  background-size: 200% 200%;
+  animation: gradientBG 15s ease infinite;
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.hero-banner-logo {
+  width: 300px;
+  max-width: 80%;
+  margin-bottom: var(--spacing-lg);
+  transition: transform 0.3s ease;
+}
+.hero-banner-logo:hover {
+  transform: scale(1.05);
+}
+
+.hero-title {
+  font-size: 4rem;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  line-height: 1.4;
+}
+
+.btn-primary {
+  font-size: 1.125rem;
+}

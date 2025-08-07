@@ -1,7 +1,67 @@
 :root {
-  --hero-bg-gradient: linear-gradient(180deg, #1a1a1f 0%, #0d0d10 100%);
-  --orange: #ff8c00;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  --color-bg: #0C0C11;
+  --color-bg-alt: #1A1A1F;
+  --color-text: #EEE;
+  --color-muted: #777;
+  --color-primary: #FF8C00;
+
+  --font-sans: 'Inter', sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#000;color:#fff;}
-.container{width:90%;max-width:1200px;margin:0 auto;}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-primary);
+  color: #000;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.6);
+}
+
+/* Utility headings */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Gradient Animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
