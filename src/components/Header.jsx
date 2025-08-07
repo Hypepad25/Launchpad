@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainLogo from '../assets/hypepad-logo.png';
@@ -14,7 +13,6 @@ const Header = () => {
   // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // if menu is open and click is outside nav & toggle button
       if (
         mobileOpen &&
         navRef.current &&
@@ -24,7 +22,6 @@ const Header = () => {
         setMobileOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [mobileOpen]);
@@ -42,9 +39,15 @@ const Header = () => {
           ☰
         </button>
 
-        {/* Nav links */}
+        {/* Navigation */}
         <nav ref={navRef} className={`main-nav ${mobileOpen ? 'open' : ''}`}>
           <ul className="nav-list">
+            {/* Home link */}
+            <li className="nav-item">
+              <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+                Home
+              </NavLink>
+            </li>
             {/* Platform dropdown */}
             <li className="nav-item dropdown">
               <span>Platform</span>
@@ -99,7 +102,6 @@ const Header = () => {
         <button className="btn-connect-wallet">Connect Wallet</button>
       </div>
     </header>
-  );
-};
+);
 
 export default Header;

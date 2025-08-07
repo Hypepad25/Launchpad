@@ -1,26 +1,32 @@
-/* Header */
+/* Header styling */
 .header {
-  background: #000;
+  background: #0C0C11;
   border-bottom: 1px solid #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 .header-container {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
 }
 .header-logo {
-  width: 140px;
-  height: auto;
+  width: 160px;
+  transition: transform 0.2s ease;
 }
+.header-logo:hover {
+  transform: scale(1.05);
+}
+/* Mobile toggle */
 .mobile-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 1.8rem;
-  color: #fff;
+  color: #FFF;
   margin-left: 1rem;
+  z-index: 110;
 }
 .main-nav {
   display: flex;
@@ -29,16 +35,19 @@
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 .nav-item > a,
 .nav-item > span {
-  color: #fff;
+  color: #FFF;
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem;
-  display: block;
-  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+.nav-item > a:hover,
+.nav-item > span:hover {
+  color: var(--orange);
 }
 .nav-item > a.active {
   color: var(--orange);
@@ -49,35 +58,48 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 0;
   background: #111;
   list-style: none;
   padding: 0.5rem 0;
-  min-width: 180px;
   border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  min-width: 180px;
 }
 .dropdown-menu li a {
-  color: #fff;
+  color: #FFF;
   padding: 0.5rem 1rem;
   display: block;
   text-decoration: none;
+  transition: background 0.2s ease;
 }
+.dropdown-menu li a:hover {
+  background: rgba(255, 140, 0, 0.1);
+}
+/* Show dropdown on hover */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+/* Connect Wallet button */
 .btn-connect-wallet {
   margin-left: auto;
   background: var(--orange);
   color: #000;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-/* Mobile */
+.btn-connect-wallet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,140,0,0.6);
+}
+/* Responsive mobile */
 @media (max-width: 768px) {
   .mobile-toggle {
     display: block;
@@ -87,14 +109,14 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: #000;
+    background: #0C0C11;
     flex-direction: column;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
   .main-nav.open {
-    max-height: 600px;
+    max-height: 1000px;
   }
   .nav-list {
     flex-direction: column;
@@ -102,13 +124,15 @@
   }
   .nav-item > a,
   .nav-item > span {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-top: 1px solid #333;
   }
   .dropdown-menu {
     position: static;
     border: none;
     background: #111;
+    box-shadow: none;
     padding-left: 1rem;
+    margin: 0;
   }
 }
