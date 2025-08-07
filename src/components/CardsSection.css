@@ -1,0 +1,27 @@
+.cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+.card {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 8px;
+  flex: 1 1 calc(50% - 1.5rem);
+  min-width: 200px;
+  color: #fff;
+  text-align: center;
+}
+.card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--orange);
+}
+@media (max-width: 768px) {
+  .cards-section {
+    flex-direction: column;
+  }
+  .card {
+    flex: 1 1 100%;
+  }
+}

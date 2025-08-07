@@ -5,22 +5,15 @@ import './Header.css';
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const toggleMobile = () => setMobileOpen(!mobileOpen);
-
   return (
     <header className="header">
       <div className="container header-container">
-        {/* Logo */}
         <NavLink to="/" className="logo">
           <img src={MainLogo} alt="HYPEPAD" className="header-logo" />
         </NavLink>
-
-        {/* Hamburger for mobile */}
-        <button className="mobile-toggle" onClick={toggleMobile}>
+        <button className="mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
           ☰
         </button>
-
-        {/* Main navigation */}
         <nav className={`main-nav ${mobileOpen ? 'open' : ''}`}>
           <ul className="nav-list">
             <li className="nav-item dropdown">
@@ -54,17 +47,12 @@ const Header = () => {
                 <li><NavLink to="/whitepaper">Whitepaper</NavLink></li>
               </ul>
             </li>
-            <li className="nav-item">
-              <NavLink to="/admin">Admin</NavLink>
-            </li>
           </ul>
         </nav>
-
-        {/* Connect Wallet */}
         <button className="btn-connect-wallet">Connect Wallet</button>
       </div>
     </header>
-  );
+);
 };
 
 export default Header;
