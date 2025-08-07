@@ -1,106 +1,15 @@
-/* Header styling */
-.header {
-  background: #0C0C11;
-  border-bottom: 1px solid #333;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 100;
-}
-.header-container {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-}
-.header-logo {
-  width: 160px;
-  transition: transform 0.2s ease;
-  margin-right: 1rem;
-}
-.header-logo:hover {
-  transform: scale(1.05);
-}
-/* Mobile toggle */
-.mobile-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #FFF;
-  margin-right: 1rem;
-  z-index: 110;
-}
-.main-nav {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-}
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-}
-.nav-item > a,
-.nav-item > span {
-  color: #FFF;
+/* Header.css */
+
+/* ...existing styles above... */
+
+/* Ensure dropdown text has no underlines or borders */
+.nav-item > span,
+.nav-item > a {
   text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 0;
-  transition: color 0.2s ease;
-}
-.nav-item > a:hover,
-.nav-item > span:hover {
-  color: var(--color-primary);
-}
-.nav-item > a.active {
-  color: var(--color-primary);
-}
-.dropdown {
-  position: relative;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  background: #111;
-  list-style: none;
-  padding: 0.5rem 0;
-  border: 1px solid #333;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  min-width: 180px;
-  z-index: 120;
-}
-.dropdown-menu li a {
-  color: #FFF;
-  padding: 0.5rem 1rem;
-  display: block;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-.dropdown-menu li a:hover {
-  background: rgba(255, 140, 0, 0.1);
-}
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-/* Connect Wallet buttons */
-.btn-connect-wallet {
-  background: var(--color-primary);
-  color: #000;
-  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255,140,0,0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-connect-wallet:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255,140,0,0.6);
-}
+
+/* Mobile/Desktop Connect button display */
 .btn-connect-wallet.desktop {
   display: inline-block;
   margin-left: auto;
@@ -110,46 +19,17 @@
   width: 90%;
   margin: var(--spacing-sm) auto;
 }
-/* Responsive mobile */
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .mobile-toggle {
-    display: block;
-  }
-  .main-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #0C0C11;
-    flex-direction: column;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  .main-nav.open {
-    max-height: 1000px;
-  }
-  .nav-list {
-    flex-direction: column;
-    gap: 0;
-  }
-  .nav-item > a,
-  .nav-item > span {
-    padding: 1rem 1.5rem;
-  }
-  .dropdown-menu {
-    position: static;
-    border: none;
-    background: #111;
-    box-shadow: none;
-    padding-left: 1rem;
-    margin: 0;
-  }
-  /* Hide desktop button, show mobile */
   .btn-connect-wallet.desktop {
     display: none;
   }
   .btn-connect-wallet.mobile {
     display: block;
+  }
+  /* Push mobile button below nav items */
+  .main-nav.open {
+    padding-bottom: var(--spacing-sm);
   }
 }
