@@ -1,14 +1,11 @@
-HYPEPAD - Logo Rebuild Integration Kit (v3)
 
-Use this to rebuild the latest logo into your launchpad without changing your layout.
-1) Copy everything in /public into your project's /public (overwrite favicons if prompted).
-2) Add head-snippet.html to your <head> (index.html for Vite; layout for Next.js).
-3) Optionally drop the provided React files into your project:
-   - src/components/BrandLogo.jsx  (navbar logo)
-   - src/components/Navbar.jsx     (example navbar with Connect Wallet right-aligned)
-   - src/sections/Hero.jsx         (hero section with non-overflow title)
-These components just reference /logo-512.png and won’t alter your existing theme unless you import them.
+No-White-Background Patch (Vite/React)
 
-Notes
-- The PNGs are transparent (no black circle).
-- Social previews (og:image & twitter:image) point to /logo-512.png. You can swap in a 1200x630 OG card later.
+1) Copy /public/logo-512.png into your project's /public (overwrite).
+2) Import override CSS once, e.g. in src/main.jsx:
+   import "./no-white-bg-override.css";
+3) Swap your hero with:
+   import HeroNoCard from "./sections/HeroNoCard";
+   <HeroNoCard />
+4) Remove any wrapper with `bg-white` or `bg-gray-50` around the logo.
+5) If you still see white, hard refresh with cache disabled.

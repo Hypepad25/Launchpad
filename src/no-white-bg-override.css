@@ -1,0 +1,6 @@
+
+/* Kill accidental white backgrounds on logo/images */
+img[alt="HYPEPAD"], .brand-logo, .logo {
+  background: transparent !important;
+  box-shadow: none !important;
+}
