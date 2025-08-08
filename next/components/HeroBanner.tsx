@@ -1,14 +1,15 @@
+import Image from "next/image";
+
 export default function HeroBanner() {
   return (
     <section className="relative bg-gradient-to-b from-black to-neutral-900">
       <div className="mx-auto max-w-7xl px-4 py-16 text-center text-white">
-        <img
-          src="/brand/hypepad-logo-hero@1x.png"
-          srcSet="/brand/hypepad-logo-hero@2x.png 2x, /brand/hypepad-logo-hero@3x.png 3x"
-          width="900" height="300"
+        <Image
+          src="/brand/hypepad-logo-hero@2x.png"
+          width={900}
+          height={300}
           alt="HYPEPAD"
-          className="mx-auto block select-none"
-          draggable="false"
+          priority={false}
         />
       </div>
     </section>
