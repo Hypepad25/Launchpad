@@ -1,0 +1,106 @@
+/* === HYPEPAD CSS HOTFIX (drop-in) ===
+   Purpose: visually roll back to pre-logo-change look without touching components.
+   How: link this file LAST so it overrides everything else.
+*/
+
+/* Global rhythm + background */
+html, body {
+  background: #0a0a0b !important;
+  color: #fff;
+}
+
+/* Container width */
+.container {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Header */
+header.sticky {
+  background: rgba(0,0,0,.7) !important;
+  backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid rgba(255,255,255,.05) !important;
+}
+header img[alt="HYPEPAD"] {
+  height: 28px !important;
+  width: auto !important;
+}
+
+/* Kill any hero logo image no matter how it's mounted */
+img[src*="hypepad-logo-hero"],
+img[alt="HYPEPAD HERO"],
+.hero-logo,
+.HeroLogo {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hero background + overlay restore */
+[data-hero], section[aria-label="Hero"], .Hero, .hero, .banner, .Banner {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+[data-hero] > *, section[aria-label="Hero"] > *, .Hero > *, .hero > *, .banner > *, .Banner > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Provide a default background if none is set */
+[data-hero]::before,
+section[aria-label="Hero"]::before,
+.Hero::before, .hero::before, .banner::before, .Banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/hypepad-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* Soft overlay for readability */
+[data-hero]::after,
+section[aria-label="Hero"]::after,
+.Hero::after, .hero::after, .banner::after, .Banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 1;
+}
+
+/* Hero spacing & text */
+h1, .hero-title {
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+.hero h1, .Hero h1, [data-hero] h1, section[aria-label="Hero"] h1 {
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  font-size: clamp(2.25rem, 4vw, 3.75rem) !important; /* 36px–60px */
+  color: #fff !important;
+}
+.hero p, .Hero p, [data-hero] p, section[aria-label="Hero"] p {
+  color: #e5e5e5 !important;
+  max-width: 52ch !important;
+  font-size: clamp(1rem, 1.5vw, 1.125rem) !important; /* 16–18px */
+}
+
+/* Buttons look consistent */
+button, .btn, a.button, [role="button"] {
+  border-radius: 12px !important;
+}
+
+/* Utility */
+.text-balance { text-wrap: balance !important; }
+
+/* Prevent layout jumps */
+img { max-width: 100%; height: auto; }
+
+/* Hide any white background behind logo svgs/pngs that are nested */
+.logo, .Logo, svg[role="img"] rect[fill='#fff'] { fill: transparent !important; }
