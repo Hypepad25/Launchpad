@@ -1,31 +1,24 @@
-HYPEPAD — ONE PATCH (assets + favicon + white-box fix + crisp retina logos)
+Fix for build error:
+"Module not found: Can't resolve '../assets/h-rocket-logo.png' in /src/components"
 
-Merge the contents of `merge-into-root/` into your repo root.
+What this zip does:
+- Adds BOTH files so either import works:
+  - src/assets/h-rocket-logo.png   ← exact filename your code is requesting
+  - src/assets/hypepad-logo.png    ← future-proof if you switch imports back
+- Also includes:
+  - public/hypepad-logo.png        ← for <img src="/hypepad-logo.png">
+  - public/favicon.ico             ← from the same logo
 
-It includes:
-- src/assets/h-rocket-logo.png & src/assets/hypepad-logo.png  ← fixes CRA import errors
-- public/hypepad-logo.png                                     ← same logo for header/hero
-- public/brand/hypepad-logo-header@1x/2x/3x.png               ← crisp header set
-- public/brand/hypepad-logo-hero@1x/2x/3x.png                 ← crisp hero set
-- public/favicon.ico + PNG favicons + site.webmanifest        ← from the same logo
-- public/hypepad-logo-override.css                            ← kills white background boxes
-- public/index.html                                           ← CRA template with <link> to the override CSS
-
-How to apply:
-1) Copy **merge-into-root/** into your project root (merge folders).
+How to install:
+1) Unzip and merge into your repo root so you end up with:
+   - src/assets/h-rocket-logo.png
+   - src/assets/hypepad-logo.png
+   - public/hypepad-logo.png
+   - public/favicon.ico
 2) Commit & push → Vercel redeploys.
-3) In your components, point to the retina assets (or keep your current imports):
-   Header:
-     <img src="/brand/hypepad-logo-header@1x.png"
-          srcset="/brand/hypepad-logo-header@2x.png 2x, /brand/hypepad-logo-header@3x.png 3x"
-          width="160" height="40" alt="HYPEPAD" />
-   Hero:
-     <img src="/brand/hypepad-logo-hero@1x.png"
-          srcset="/brand/hypepad-logo-hero@2x.png 2x, /brand/hypepad-logo-hero@3x.png 3x"
-          width="600" height="200" alt="HYPEPAD" />
+3) Hard refresh (Ctrl/Cmd + Shift + R).
 
-Notes:
-- If you already have public/index.html, keep yours and just add this line in <head>:
-    <link rel="stylesheet" href="%PUBLIC_URL%/hypepad-logo-override.css" />
-- If you still see a white box, inspect the logo wrapper in DevTools; send me its outerHTML and I’ll ship a pinpoint rule.
-- If images look soft, ensure you aren’t upscaling the @1x sizes; use the @2x or @3x from /public/brand/ instead.
+Tip (optional cleanup):
+- In components, prefer referencing the public asset
+  <img src="/hypepad-logo.png" alt="HYPEPAD" />
+  so you don't need a JS import for static logos.
