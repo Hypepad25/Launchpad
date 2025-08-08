@@ -1,11 +1,14 @@
+HYPEPAD HOTFIX — WHITE NAV LOGO
 
-No-White-Background Patch (Vite/React)
+What this does:
+- Drops a **white-on-transparent** `logo.png` into the most common /public paths so your navbar logo blends naturally with dark backgrounds WITHOUT any code changes.
 
-1) Copy /public/logo-512.png into your project's /public (overwrite).
-2) Import override CSS once, e.g. in src/main.jsx:
-   import "./no-white-bg-override.css";
-3) Swap your hero with:
-   import HeroNoCard from "./sections/HeroNoCard";
-   <HeroNoCard />
-4) Remove any wrapper with `bg-white` or `bg-gray-50` around the logo.
-5) If you still see white, hard refresh with cache disabled.
+How to use:
+1) Copy the `public/` folder into your project root (merge/replace).
+   - If your code uses `/images/logo.png` or `/assets/logo.png`, those are included too.
+2) Re-deploy.
+3) Hard refresh with cache bypass: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac).
+4) If you still see the old logo, Vercel is caching it. Change the filename to `/logo.png?v=2` or redeploy once more.
+
+Also included:
+- `public/hero-logo.png` (orange transparent) in case your hero references `/hero-logo.png`.
