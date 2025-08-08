@@ -1,0 +1,10 @@
+.hero-section {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
