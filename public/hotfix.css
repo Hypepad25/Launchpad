@@ -1,106 +1,85 @@
-/* === HYPEPAD CSS HOTFIX (drop-in) ===
-   Purpose: visually roll back to pre-logo-change look without touching components.
-   How: link this file LAST so it overrides everything else.
+/* ==== HYPEPAD Hotfix (Replacement for /hotfix.css) ====
+   This file replaces your existing /hotfix.css so the new mobile styles apply automatically.
+   Also injects transparent header logo + hero overlay.
 */
 
-/* Global rhythm + background */
-html, body {
-  background: #0a0a0b !important;
-  color: #fff;
-}
-
-/* Container width */
-.container {
-  max-width: 1200px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Header */
-header.sticky {
-  background: rgba(0,0,0,.7) !important;
-  backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(255,255,255,.05) !important;
-}
-header img[alt="HYPEPAD"] {
-  height: 28px !important;
-  width: auto !important;
-}
-
-/* Kill any hero logo image no matter how it's mounted */
-img[src*="hypepad-logo-hero"],
-img[alt="HYPEPAD HERO"],
-.hero-logo,
-.HeroLogo {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-/* Hero background + overlay restore */
-[data-hero], section[aria-label="Hero"], .Hero, .hero, .banner, .Banner {
-  position: relative !important;
-  width: 100% !important;
-  overflow: hidden !important;
-}
-[data-hero] > *, section[aria-label="Hero"] > *, .Hero > *, .hero > *, .banner > *, .Banner > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Provide a default background if none is set */
-[data-hero]::before,
-section[aria-label="Hero"]::before,
-.Hero::before, .hero::before, .banner::before, .Banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('/hypepad-banner.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-  opacity: 1;
-}
-
-/* Soft overlay for readability */
-[data-hero]::after,
-section[aria-label="Hero"]::after,
-.Hero::after, .hero::after, .banner::after, .Banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.35);
-  z-index: 1;
-}
-
-/* Hero spacing & text */
-h1, .hero-title {
-  overflow-wrap: anywhere !important;
-  word-break: normal !important;
-}
-.hero h1, .Hero h1, [data-hero] h1, section[aria-label="Hero"] h1 {
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-  letter-spacing: 0 !important;
-  font-size: clamp(2.25rem, 4vw, 3.75rem) !important; /* 36px–60px */
-  color: #fff !important;
-}
-.hero p, .Hero p, [data-hero] p, section[aria-label="Hero"] p {
-  color: #e5e5e5 !important;
-  max-width: 52ch !important;
-  font-size: clamp(1rem, 1.5vw, 1.125rem) !important; /* 16–18px */
-}
-
-/* Buttons look consistent */
-button, .btn, a.button, [role="button"] {
-  border-radius: 12px !important;
-}
-
-/* Utility */
-.text-balance { text-wrap: balance !important; }
-
-/* Prevent layout jumps */
+/* Base rhythm */
+html, body { background: #0a0a0b !important; color: #fff; }
+.container { max-width: 1200px; margin-inline: auto; }
 img { max-width: 100%; height: auto; }
+.text-balance { text-wrap: balance; }
 
-/* Hide any white background behind logo svgs/pngs that are nested */
-.logo, .Logo, svg[role="img"] rect[fill='#fff'] { fill: transparent !important; }
+/* ===== Header: inject transparent logo (keeps layout width) ===== */
+header a[href="/"] img[alt="HYPEPAD"], header img[alt="HYPEPAD"] {
+  opacity: 0 !important;
+}
+header a[href="/"] { position: relative; display: inline-flex; align-items: center; min-height: 28px; }
+header a[href="/"]::before {
+  content: ""; display: inline-block; height: 28px; width: 180px;
+  background: url('/brand/h-rocket-logo-transparent-hq.png') left center / contain no-repeat;
+  margin-right: 8px;
+}
+
+/* ===== Hero: banner + overlay + centered transparent logo ===== */
+[data-hero], section[aria-label="Hero"], .Hero, .hero, .banner, .Banner {
+  position: relative; width: 100%; min-height: 46vh; overflow: hidden;
+}
+[data-hero]::before, section[aria-label="Hero"]::before, .Hero::before, .hero::before, .banner::before, .Banner::before {
+  content: ""; position: absolute; inset: 0;
+  background: url('/hypepad-banner.jpg') center / cover no-repeat; z-index: 0; opacity: 1;
+}
+[data-hero]::after, section[aria-label="Hero"]::after, .Hero::after, .hero::after, .banner::after, .Banner::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/brand/h-rocket-logo-transparent-hq.png');
+  background-size: 100% 100%, min(60vw, 520px) auto;
+  background-position: center, center; background-repeat: no-repeat, no-repeat; z-index: 1;
+}
+h1, .hero-title { overflow-wrap: anywhere; word-break: normal; }
+.hero h1, .Hero h1, [data-hero] h1, section[aria-label="Hero"] h1 {
+  font-weight: 800; line-height: 1.1; letter-spacing: 0; font-size: clamp(2.25rem, 4vw, 3.75rem); color: #fff;
+}
+.hero p, .Hero p, [data-hero] p, section[aria-label="Hero"] p { color: #e5e5e5; max-width: 52ch; font-size: clamp(1rem, 1.5vw, 1.125rem); }
+
+/* ===== Mobile header redesign ===== */
+:root { --hp-header-h: 60px; }
+@media (max-width: 768px) {
+  header { position: sticky !important; top: 0; z-index: 50; height: var(--hp-header-h);
+    background: rgba(0,0,0,.85) !important; backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  header .container, header > div {
+    height: var(--hp-header-h);
+    padding: max(env(safe-area-inset-left),12px) 12px max(env(safe-area-inset-right),12px) 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  header a[href="/"]::before { height: 32px; width: 190px; }
+  header a[href="/"] img, header img[alt="HYPEPAD"] { height: 32px !important; }
+
+  header nav { display: none !important; }
+
+  header :is(button, a)[class*="connect"], header :is(button, a)[aria-label*="Connect"] {
+    padding: 8px 12px !important; border-radius: 12px !important; white-space: nowrap;
+  }
+
+  #hp-mobile-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 36px; width: 40px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px;
+    background: rgba(255,255,255,.04); color: #fff; font-size: 20px; line-height: 1; margin-left: 8px;
+  }
+
+  #hp-mobile-scrim { position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+  #hp-mobile-drawer { position: fixed; top: 0; left: 0; height: 100vh; width: 84vw; max-width: 360px;
+    background: #0b0b0c; border-right: 1px solid rgba(255,255,255,.06);
+    transform: translateX(-100%); transition: transform .25s ease;
+    padding: calc(env(safe-area-inset-top) + 12px) 16px 24px 16px; display: flex; flex-direction: column; gap: 8px; }
+  #hp-mobile-drawer.open { transform: translateX(0); }
+  #hp-mobile-scrim.open { opacity: 1; pointer-events: auto; }
+
+  #hp-mobile-drawer a, #hp-mobile-drawer button {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: #fff; padding: 12px 10px; border-radius: 12px; background: transparent;
+  }
+  #hp-mobile-drawer a:hover { background: rgba(255,255,255,.06); }
+  #hp-mobile-drawer .hp-nav-group { color: #bbb; font-size: 12px; padding: 10px 10px 0; }
+}

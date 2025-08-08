@@ -1,52 +1,40 @@
-// ==== HYPEPAD Mobile Header Drawer (matches mockup) ====
+// Replaces need for adding a new filename; include this script once in your HTML.
+// It injects the hamburger + drawer on mobile and keeps Connect Wallet visible.
 (function () {
   const MAX_W = 768;
   const q = (sel, root=document) => root.querySelector(sel);
 
   function enhanceMobileHeader() {
-    if (window.innerWidth > MAX_W) return;
+    try {
+      if (window.innerWidth > MAX_W) return;
+      const header = q('header'); if (!header) return;
+      const container = header.querySelector('.container') || header.firstElementChild || header;
+      if (!container || q('#hp-mobile-toggle', container)) return;
 
-    const header = q('header');
-    if (!header) return;
+      const logoLink = container.querySelector('a[href="/"]') || container.querySelector('a');
 
-    const container = header.querySelector('.container') || header.firstElementChild || header;
-    if (!container || q('#hp-mobile-toggle', container)) return; // already injected
+      const toggle = document.createElement('button');
+      toggle.id = 'hp-mobile-toggle'; toggle.type = 'button';
+      toggle.setAttribute('aria-label', 'Open menu'); toggle.textContent = '☰';
 
-    // Find the logo link (or the first link as fallback)
-    const logoLink = container.querySelector('a[href="/"]') || container.querySelector('a');
+      if (logoLink && logoLink.parentNode) logoLink.parentNode.insertBefore(toggle, logoLink.nextSibling);
+      else container.insertBefore(toggle, container.firstChild);
 
-    // Inject hamburger button beside logo
-    const toggle = document.createElement('button');
-    toggle.id = 'hp-mobile-toggle';
-    toggle.type = 'button';
-    toggle.setAttribute('aria-label', 'Open menu');
-    toggle.textContent = '☰';
+      const nav = header.querySelector('nav'); const navHTML = nav ? nav.innerHTML : '';
 
-    if (logoLink && logoLink.parentNode) {
-      logoLink.parentNode.insertBefore(toggle, logoLink.nextSibling);
-    } else {
-      container.insertBefore(toggle, container.firstChild);
-    }
+      const scrim = document.createElement('div'); scrim.id = 'hp-mobile-scrim';
+      const drawer = document.createElement('aside'); drawer.id = 'hp-mobile-drawer';
+      drawer.innerHTML = navHTML || '<div class="hp-nav-group">Menu</div>';
 
-    // Clone first <nav> for drawer
-    const nav = header.querySelector('nav');
-    const navHTML = nav ? nav.innerHTML : '';
+      document.body.appendChild(scrim); document.body.appendChild(drawer);
 
-    const scrim = document.createElement('div');
-    scrim.id = 'hp-mobile-scrim';
-    const drawer = document.createElement('aside');
-    drawer.id = 'hp-mobile-drawer';
-    drawer.innerHTML = navHTML || '<div class="hp-nav-group">Menu</div>';
+      function closeDrawer() { drawer.classList.remove('open'); scrim.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+      function openDrawer()  { drawer.classList.add('open');  scrim.classList.add('open');  toggle.setAttribute('aria-expanded','true'); }
 
-    document.body.appendChild(scrim);
-    document.body.appendChild(drawer);
-
-    function closeDrawer() { drawer.classList.remove('open'); scrim.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
-    function openDrawer()  { drawer.classList.add('open');  scrim.classList.add('open');  toggle.setAttribute('aria-expanded','true'); }
-
-    toggle.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
-    scrim.addEventListener('click', closeDrawer);
-    window.addEventListener('resize', () => { if (window.innerWidth > MAX_W) closeDrawer(); });
+      toggle.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+      scrim.addEventListener('click', closeDrawer);
+      window.addEventListener('resize', () => { if (window.innerWidth > MAX_W) closeDrawer(); });
+    } catch (e) { console.warn('Hotfix mobile header init failed:', e); }
   }
 
   if (document.readyState !== 'loading') enhanceMobileHeader();
