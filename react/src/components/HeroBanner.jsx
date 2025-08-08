@@ -1,3 +1,5 @@
+import "../styles/logo.css";
+
 export default function HeroBanner() {
   return (
     <section className="relative bg-gradient-to-b from-black to-neutral-900">
