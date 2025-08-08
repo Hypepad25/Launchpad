@@ -1,0 +1,21 @@
+/* HYPEPAD: remove unintended white tiles behind logo */
+header a[href="/"],
+header a[href="/"] > *,
+header .navbar-brand, header .navbar-brand *,
+header [class*="logo" i], header [id*="logo" i],
+.navbar [class*="logo" i], .navbar [id*="logo" i],
+.hero img[alt*="hypepad" i], .hero img[src*="hypepad-logo" i] {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* common utility backgrounds to kill */
+header .bg-white, header .bg-gray-50, header .bg-neutral-50,
+.hero .bg-white, .hero .bg-gray-50, .hero .bg-neutral-50 {
+  background-color: transparent !important;
+}
+
+/* optional: soft blend on dark headers */
+.logo--blend { mix-blend-mode: screen; }
