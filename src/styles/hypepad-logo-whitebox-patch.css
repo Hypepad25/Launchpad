@@ -1,0 +1,26 @@
+/* HYPEPAD white-box logo patch — global override */
+
+header a[href="/"],
+header a[href="/"] > *,
+header .navbar-brand,
+header .navbar-brand *,
+header [class*="logo" i],
+header [id*="logo" i],
+.navbar [class*="logo" i],
+.navbar [id*="logo" i],
+.hero img[alt*="hypepad" i],
+.hero img[src*="hypepad-logo" i] {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* Kill common Tailwind utility backgrounds that cause white tiles */
+header .bg-white, header .bg-gray-50, header .bg-neutral-50,
+.hero .bg-white,   hero .bg-gray-50,   hero .bg-neutral-50 {
+  background-color: transparent !important;
+}
+
+/* Optional: soften logo on dark header */
+.logo--blend { mix-blend-mode: screen; }

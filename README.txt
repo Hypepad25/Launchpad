@@ -1,14 +1,16 @@
-HYPEPAD HOTFIX — WHITE NAV LOGO
+HYPEPAD White-Box Fix — Vite/React Bundle (merge directly into repo root)
 
-What this does:
-- Drops a **white-on-transparent** `logo.png` into the most common /public paths so your navbar logo blends naturally with dark backgrounds WITHOUT any code changes.
+Files included:
+- src/styles/hypepad-logo-whitebox-patch.css  ← the fix
+- src/logo-patch.inject.js                    ← import this once to autoload the CSS
 
-How to use:
-1) Copy the `public/` folder into your project root (merge/replace).
-   - If your code uses `/images/logo.png` or `/assets/logo.png`, those are included too.
-2) Re-deploy.
-3) Hard refresh with cache bypass: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac).
-4) If you still see the old logo, Vercel is caching it. Change the filename to `/logo.png?v=2` or redeploy once more.
+How to apply (60 seconds):
+1) Copy the **contents of `merge-into-root/`** into your project root (merge folders).
+2) Open `src/main.jsx` (or `src/main.tsx`) and add **this one line at the top**:
+   import './logo-patch.inject.js';
+3) Commit & push → Vercel redeploys.
+4) Hard refresh the browser (Ctrl/Cmd + Shift + R).
 
-Also included:
-- `public/hero-logo.png` (orange transparent) in case your hero references `/hero-logo.png`.
+If the white box persists:
+- Open DevTools → select the logo container → check **Computed → background** to see which selector is painting white.
+- Send me the element's **outerHTML** and the offending selector; I'll ship a targeted rule.
