@@ -8,7 +8,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef(null);
 
-  const toggleMobile = () => setMobileOpen(open => !open);
+  const toggleMobile = () => setMobileOpen(o => !o);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -40,15 +40,10 @@ export default function Header() {
           ☰
         </button>
 
-        <nav
-          ref={navRef}
-          className={`main-nav${mobileOpen ? ' open' : ''}`}
-        >
+        <nav ref={navRef} className={`main-nav${mobileOpen ? ' open' : ''}`}>
           <ul className="nav-list">
             <li>
-              <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
-                Home
-              </NavLink>
+              <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
             </li>
             <li className="dropdown">
               <span>Platform ▾</span>
@@ -88,17 +83,12 @@ export default function Header() {
                 <li><a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer">Telegram</a></li>
               </ul>
             </li>
-
-            {/* Mobile-only Connect */}
-            <li className="mobile-wallet">
-              <button className="btn-connect-wallet">Connect Wallet</button>
-            </li>
           </ul>
         </nav>
 
-        {/* Desktop-only Connect */}
-        <button className="btn-connect-wallet desktop">Connect Wallet</button>
+        {/* Single Connect button for all breakpoints */}
+        <button className="btn-connect-wallet">Connect Wallet</button>
       </div>
     </header>
-);
+  );
 }

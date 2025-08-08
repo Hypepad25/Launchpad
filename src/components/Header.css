@@ -1,5 +1,4 @@
 /* src/components/Header.css */
-
 .header {
   background: #0C0C11;
   padding: 0.75rem 1rem;
@@ -10,104 +9,11 @@
 .header-container {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .header-logo {
   width: 140px;
-  margin-right: 2rem;
-}
-
-/* Nav & Lists */
-.main-nav {
-  flex: 1;
-}
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-.nav-list li {
-  position: relative;
-}
-.nav-list a,
-.nav-list span {
-  color: #FFF;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.nav-list a.active {
-  color: var(--color-primary);
-}
-
-/* Dropdown arrow spacing */
-.nav-list .dropdown > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-/* Dropdown menus */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
-  background: #111;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-.dropdown-menu li {
-  margin: 0;
-}
-.dropdown-menu a {
-  display: block;
-  padding: 0.75rem 1.25rem;
-  color: #FFF;
-  text-decoration: none;
-}
-.dropdown-menu a:hover {
-  background: rgba(255,140,0,0.15);
-}
-
-/* Show on hover (desktop) */
-@media(min-width: 769px) {
-  .dropdown:hover > .dropdown-menu {
-    display: block;
-  }
-}
-
-/* Connect Wallet buttons */
-.btn-connect-wallet {
-  background: var(--color-primary);
-  color: #000;
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(255,140,0,0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-.btn-connect-wallet:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255,140,0,0.6);
-}
-/* Desktop-only button */
-.btn-connect-wallet.desktop {
-  display: inline-block;
-  margin-left: auto;
-}
-/* Mobile-only button (inside menu) */
-.btn-connect-wallet.mobile {
-  display: none;
+  margin-right: 1rem;
 }
 
 /* Mobile toggle */
@@ -118,47 +24,88 @@
   color: #FFF;
   font-size: 1.8rem;
   margin-right: 1rem;
-  z-index: 200;
+}
+
+/* Nav */
+.main-nav { flex: 1; }
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li { position: relative; }
+.nav-list a, .nav-list span {
+  color: #FFF;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.nav-list a.active { color: var(--color-primary); }
+
+/* Dropdowns */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: #111;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+}
+.dropdown-menu a:hover { background: rgba(255,140,0,0.15); }
+
+@media(min-width: 769px) {
+  .dropdown:hover > .dropdown-menu { display: block; }
+}
+
+/* Single Connect Wallet button */
+.btn-connect-wallet {
+  background: var(--color-primary);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  margin-left: auto;
+}
+.btn-connect-wallet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,140,0,0.6);
 }
 
 /* Mobile styles */
 @media(max-width: 768px) {
-  .header-container {
-    flex-wrap: wrap;
-  }
-  .mobile-toggle {
-    display: block;
-  }
+  .mobile-toggle { display: block; }
+  .main-nav { width: 100%; order: 3; }
   .nav-list {
     flex-direction: column;
     gap: 0;
+    width: 100%;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    width: 100%;
   }
-  .main-nav.open .nav-list {
-    max-height: 1000px;
-  }
-  .nav-list li {
-    width: 100%;
-  }
-  .nav-list a,
-  .nav-list span {
-    padding: 0.75rem 1rem;
-  }
-  .nav-list .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    max-height: none;
-  }
-  /* Hide desktop button, show mobile only when open */
-  .btn-connect-wallet.desktop {
-    display: none;
-  }
-  .main-nav.open .btn-connect-wallet.mobile {
-    display: block;
+  .main-nav.open .nav-list { max-height: 1000px; }
+  .nav-list a, .nav-list span { padding: 0.75rem 1rem; width: 100%; display: block; }
+  .dropdown-menu { position: static; box-shadow: none; }
+  /* Place the single connect button under the menu */
+  .btn-connect-wallet {
+    order: 4;
     width: calc(100% - 2rem);
-    margin: 1rem;
+    margin: 0.75rem 1rem 0.5rem auto;
   }
 }
