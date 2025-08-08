@@ -1,14 +1,7 @@
 // src/components/TrendingCarousel.jsx
 import React from 'react';
 import './TrendingCarousel.css';
-
-const items = [
-  { name:'NekoSwap', chain:'Solana', kyc:true, safu:true },
-  { name:'NovaX', chain:'Ethereum', kyc:true, safu:false },
-  { name:'MemeLord', chain:'Base', kyc:false, safu:false },
-  { name:'Aptora', chain:'Polygon', kyc:true, safu:true },
-  { name:'Hydra', chain:'Arbitrum', kyc:false, safu:true },
-];
+import { IS_LIVE } from '../config/app';
 
 export default function TrendingCarousel() {
   return (
@@ -16,28 +9,17 @@ export default function TrendingCarousel() {
       <div className="container">
         <div className="trending-head">
           <h2>Trending</h2>
-          <div className="chips">
-            <button className="chip">All</button>
-            <button className="chip">Ethereum</button>
-            <button className="chip">BNB</button>
-            <button className="chip">Solana</button>
+          {!IS_LIVE && <span className="coming-soon">Coming soon</span>}
+        </div>
+        {IS_LIVE ? (
+          <div className="track" role="list">
+            {/* map live projects here */}
           </div>
-        </div>
-        <div className="track" role="list">
-          {items.map((it, i) => (
-            <article className="tcard" key={i} role="listitem">
-              <header className="trow">
-                <strong>{it.name}</strong>
-                <span className="chain">{it.chain}</span>
-              </header>
-              <footer className="brow">
-                {it.kyc && <span className="badge small">KYC</span>}
-                {it.safu && <span className="badge small">SAFU</span>}
-                <a href="/launchpad" className="mini">Details →</a>
-              </footer>
-            </article>
-          ))}
-        </div>
+        ) : (
+          <div className="t-placeholder">
+            No live tokens yet. Your launch could be trending on day one.
+          </div>
+        )}
       </div>
     </section>
   );
