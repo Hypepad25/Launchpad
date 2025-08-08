@@ -1,0 +1,40 @@
+/* --- LOGO HOTFIX ---
+   Nukes any white background applied by CSS to the logo or its wrappers.
+   Import this file in your global CSS so it loads on every page.
+*/
+
+/* 1) Target common logo elements */
+img[alt*="HYPEPAD" i],
+img[src*="logo" i],
+[class*="logo" i],
+[id*="logo" i],
+.navbar-brand,
+.header-logo,
+.site-logo {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 2) Ensure the parent wrappers aren't painting white */
+header .logo,
+header .navbar-brand,
+header [class*="logo" i],
+header [class*="brand" i],
+header a[href="/"],
+header a[href="/"] > img {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 3) If your logo is used as a background image */
+header [style*="background-image"],
+[class*="logo" i][style*="background-image"] {
+  background-color: transparent !important;
+}
+
+/* 4) Optional: force the <img> itself transparent */
+header img {
+  background-color: transparent !important;
+}
+
+/* If this still doesn't apply, increase specificity by wrapping your header in #__app or main layout id and duplicating selectors. */
