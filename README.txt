@@ -1,16 +1,22 @@
-HYPEPAD White-Box Fix — Vite/React Bundle (merge directly into repo root)
+CRA build error fix + unified logo
 
-Files included:
-- src/styles/hypepad-logo-whitebox-patch.css  ← the fix
-- src/logo-patch.inject.js                    ← import this once to autoload the CSS
+What this fixes:
+- Build error: "Can't resolve '../assets/hypepad-logo.png' in /src/components"
+  → This zip adds the expected file at **src/assets/hypepad-logo.png**.
 
-How to apply (60 seconds):
-1) Copy the **contents of `merge-into-root/`** into your project root (merge folders).
-2) Open `src/main.jsx` (or `src/main.tsx`) and add **this one line at the top**:
-   import './logo-patch.inject.js';
-3) Commit & push → Vercel redeploys.
-4) Hard refresh the browser (Ctrl/Cmd + Shift + R).
+What else is included:
+- public/hypepad-logo.png (same artwork for header/hero usage)
+- public/favicon.ico (generated from the same logo)
+
+How to install:
+1) Unzip and merge into your repo root (so you end up with:
+   - src/assets/hypepad-logo.png
+   - public/hypepad-logo.png
+   - public/favicon.ico
+)
+2) Commit & push → Vercel redeploys.
+3) Hard refresh (Ctrl/Cmd + Shift + R).
 
 If the white box persists:
-- Open DevTools → select the logo container → check **Computed → background** to see which selector is painting white.
-- Send me the element's **outerHTML** and the offending selector; I'll ship a targeted rule.
+- It's CSS on a wrapper. Remove any 'bg-white' on the link/div around the logo or set:
+  header img, header .logo, .hero img { background: transparent !important; }
