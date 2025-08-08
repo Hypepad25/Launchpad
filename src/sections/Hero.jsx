@@ -5,10 +5,10 @@ export default function Hero() {
     <section className="relative bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <img
-          src="/logo-512.png"
+          src="/logo-512.png?v5"
           alt="HYPEPAD"
           className="w-48 md:w-64 drop-shadow-xl"
-          style={{ objectFit: "contain" }}
+          style={ objectFit: "contain" }
         />
         <div>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
