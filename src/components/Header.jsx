@@ -6,10 +6,24 @@ import './Header.css';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({
+    platform: false,
+    create: false,
+    engage: false,
+    resources: false,
+    support: false
+  });
   const navRef = useRef(null);
 
   const toggleMobile = () => setMobileOpen(o => !o);
+  const closeMobile = () => setMobileOpen(false);
 
+  // Close submenus when mobile nav closes
+  useEffect(() => {
+    if (!mobileOpen) setOpenDropdowns({ platform: false, create: false, engage: false, resources: false, support: false });
+  }, [mobileOpen]);
+
+  // Click-away to close menu
   useEffect(() => {
     function handleClickOutside(e) {
       if (
@@ -18,17 +32,21 @@ export default function Header() {
         !navRef.current.contains(e.target) &&
         !e.target.closest('.mobile-toggle')
       ) {
-        setMobileOpen(false);
+        closeMobile();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [mobileOpen]);
 
+  const toggleDropdown = (key) => {
+    setOpenDropdowns(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
   return (
     <header className="header">
       <div className="container header-container">
-        <NavLink to="/" className="logo">
+        <NavLink to="/" className="logo" onClick={closeMobile}>
           <img src={MainLogo} alt="HYPEPAD" className="header-logo" />
         </NavLink>
 
@@ -43,44 +61,89 @@ export default function Header() {
         <nav ref={navRef} className={`main-nav${mobileOpen ? ' open' : ''}`}>
           <ul className="nav-list">
             <li>
-              <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
+              <NavLink to="/" onClick={closeMobile} className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
             </li>
-            <li className="dropdown">
-              <span>Platform ▾</span>
+
+            <li className={`dropdown${openDropdowns.platform ? ' open' : ''}`}>
+              <span
+                role="button"
+                tabIndex={0}
+                aria-expanded={openDropdowns.platform}
+                onClick={() => toggleDropdown('platform')}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown('platform')}
+              >
+                Platform ▾
+              </span>
               <ul className="dropdown-menu">
-                <li><NavLink to="/launchpad">Launchpad</NavLink></li>
-                <li><NavLink to="/presale">Presale</NavLink></li>
+                <li><NavLink to="/launchpad" onClick={closeMobile}>Launchpad</NavLink></li>
+                <li><NavLink to="/presale" onClick={closeMobile}>Presale</NavLink></li>
               </ul>
             </li>
-            <li className="dropdown">
-              <span>Create ▾</span>
+
+            <li className={`dropdown${openDropdowns.create ? ' open' : ''}`}>
+              <span
+                role="button"
+                tabIndex={0}
+                aria-expanded={openDropdowns.create}
+                onClick={() => toggleDropdown('create')}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown('create')}
+              >
+                Create ▾
+              </span>
               <ul className="dropdown-menu">
-                <li><NavLink to="/token-creator">Token Creator</NavLink></li>
-                <li><NavLink to="/meme-creator">Meme Creator</NavLink></li>
+                <li><NavLink to="/token-creator" onClick={closeMobile}>Token Creator</NavLink></li>
+                <li><NavLink to="/meme-creator" onClick={closeMobile}>Meme Creator</NavLink></li>
               </ul>
             </li>
-            <li className="dropdown">
-              <span>Engage ▾</span>
+
+            <li className={`dropdown${openDropdowns.engage ? ' open' : ''}`}>
+              <span
+                role="button"
+                tabIndex={0}
+                aria-expanded={openDropdowns.engage}
+                onClick={() => toggleDropdown('engage')}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown('engage')}
+              >
+                Engage ▾
+              </span>
               <ul className="dropdown-menu">
-                <li><NavLink to="/staking">Staking</NavLink></li>
-                <li><NavLink to="/leaderboard">Leaderboard</NavLink></li>
-                <li><NavLink to="/trending">Trending</NavLink></li>
+                <li><NavLink to="/staking" onClick={closeMobile}>Staking</NavLink></li>
+                <li><NavLink to="/leaderboard" onClick={closeMobile}>Leaderboard</NavLink></li>
+                <li><NavLink to="/trending" onClick={closeMobile}>Trending</NavLink></li>
               </ul>
             </li>
-            <li className="dropdown">
-              <span>Resources ▾</span>
+
+            <li className={`dropdown${openDropdowns.resources ? ' open' : ''}`}>
+              <span
+                role="button"
+                tabIndex={0}
+                aria-expanded={openDropdowns.resources}
+                onClick={() => toggleDropdown('resources')}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown('resources')}
+              >
+                Resources ▾
+              </span>
               <ul className="dropdown-menu">
-                <li><NavLink to="/kyc">KYC</NavLink></li>
-                <li><NavLink to="/referrals">Referrals</NavLink></li>
-                <li><NavLink to="/faq">FAQ</NavLink></li>
-                <li><NavLink to="/whitepaper">Whitepaper</NavLink></li>
+                <li><NavLink to="/kyc" onClick={closeMobile}>KYC</NavLink></li>
+                <li><NavLink to="/referrals" onClick={closeMobile}>Referrals</NavLink></li>
+                <li><NavLink to="/faq" onClick={closeMobile}>FAQ</NavLink></li>
+                <li><NavLink to="/whitepaper" onClick={closeMobile}>Whitepaper</NavLink></li>
               </ul>
             </li>
-            <li className="dropdown">
-              <span>Support ▾</span>
+
+            <li className={`dropdown${openDropdowns.support ? ' open' : ''}`}>
+              <span
+                role="button"
+                tabIndex={0}
+                aria-expanded={openDropdowns.support}
+                onClick={() => toggleDropdown('support')}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown('support')}
+              >
+                Support ▾
+              </span>
               <ul className="dropdown-menu">
-                <li><a href="mailto:contact@hypepad.app">Email Us</a></li>
-                <li><a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                <li><a href="mailto:contact@hypepad.app" onClick={closeMobile}>Email Us</a></li>
+                <li><a href="https://t.me/hypepad25" target="_blank" rel="noopener noreferrer" onClick={closeMobile}>Telegram</a></li>
               </ul>
             </li>
           </ul>
