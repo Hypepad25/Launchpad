@@ -1,0 +1,27 @@
+.sticky-cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .sticky-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+    position: sticky;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: .5rem;
+    background: linear-gradient(180deg, rgba(12,12,17,0), rgba(12,12,17,0.95));
+    backdrop-filter: blur(6px);
+    border-top: 1px solid #232328;
+    z-index: 90;
+  }
+  .sticky-cta a {
+    text-align: center;
+    text-decoration: none;
+    font-weight: 800;
+    padding: .8rem 1rem;
+    border-radius: 10px;
+  }
+  .cta-left { background: var(--color-primary); color:#000; }
+  .cta-right { background: #1a1a20; color: #fff; border:1px solid #2a2a2f; }
+}

@@ -1,17 +1,24 @@
+// src/components/HeroBanner.jsx
 import React from 'react';
 import './HeroBanner.css';
-import HeroBannerLogo from '../assets/hypepad-banner.png';
+import Logo from '../assets/h-rocket-logo.png';
 
-const HeroBanner = () => (
-  <section className="hero-banner">
-    <div className="container hero-container">
-      <img src={HeroBannerLogo} alt="HYPEPAD – Fuel Your Launch. Rule the Hype." className="hero-banner-logo" />
-      <h1 className="hero-title">Launch. Graduate. Grow.</h1>
-      <p className="hero-subtitle">
-        Multi-chain token launches with rug-proof security and a built-in growth engine.
-      </p>
-      <button className="btn-primary">Join $HYPE Presale</button>
-    </div>
-  </section>
-);
-export default HeroBanner;
+export default function HeroBanner() {
+  return (
+    <section className="hero">
+      <div className="hero-bg" aria-hidden="true" />
+      <div className="container hero-inner">
+        <img src={Logo} alt="HYPEPAD Logo" className="hero-logo" />
+        <h1 className="hero-title">Launch. Graduate. Grow.</h1>
+        <p className="hero-subtitle">The investor-grade Web3 launchpad powering fair, secure, multi-chain token launches.</p>
+        <div className="hero-ctas">
+          <a className="btn-primary" href="/launchpad">Launch on HYPEPAD</a>
+          <a className="btn-secondary" href="/presale">View Presale</a>
+        </div>
+        <div className="hero-cred">
+          <span>Audited • Rug‑proof • Multi‑chain</span>
+        </div>
+      </div>
+    </section>
+  );
+}

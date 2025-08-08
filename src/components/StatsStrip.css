@@ -1,0 +1,17 @@
+.stats {
+  border-top: 1px solid #232328;
+  border-bottom: 1px solid #232328;
+  background: #0f0f14;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+.stats-grid strong { font-size: 1.6rem; display: block; }
+.stats-grid span { color: #bdbdbd; font-size: .95rem; }
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

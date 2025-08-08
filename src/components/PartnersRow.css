@@ -1,0 +1,21 @@
+.partners {
+  padding: 1rem 0;
+  background: linear-gradient(90deg, #0f0f14, #14141a);
+}
+.partners-track {
+  display: flex;
+  gap: .75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.partner-pill {
+  scroll-snap-align: start;
+  border: 1px solid #2a2a2f;
+  color: #ddd;
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: .95rem;
+  background: #111117;
+}

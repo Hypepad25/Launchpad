@@ -1,0 +1,9 @@
+.roi { padding: 3rem 0; }
+.roi h2 { text-align: center; margin-bottom: 1rem; }
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.roi-controls label { display:block; color:#cfcfcf; margin-top:.5rem; }
+.roi-controls input[type=range] { width: 100%; }
+.roi-controls .val { color:#ddd; font-weight:700; margin-bottom:.5rem; }
+.roi-results { background:#111117; border:1px solid #232328; border-radius:10px; padding:1rem; display:grid; gap:.5rem; }
+.roi-results div { display:flex; align-items:center; justify-content:space-between; }
+@media (max-width: 900px) { .roi-grid { grid-template-columns: 1fr; } }

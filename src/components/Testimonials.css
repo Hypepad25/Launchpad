@@ -1,0 +1,16 @@
+.testimonials { padding: 3rem 0; }
+.testimonials h2 { text-align: center; margin-bottom: 1.25rem; }
+.t-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+blockquote {
+  background:#111117; border:1px solid #232328; border-radius:10px; padding:1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+blockquote p { color:#e8e8e8; margin-bottom:.75rem; }
+blockquote footer { color:#bdbdbd; }
+@media (max-width: 900px) {
+  .t-grid { grid-template-columns: 1fr; }
+}

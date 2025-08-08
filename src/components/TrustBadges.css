@@ -1,0 +1,10 @@
+.trust { padding: 2.5rem 0; background: #0f0f14; border-top:1px solid #232328; border-bottom:1px solid #232328; }
+.trust-inner { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; }
+.trust-item {
+  background:#111117; border: 1px solid #232328; border-radius:10px;
+  padding:1.25rem; text-align:center;
+}
+.trust-item p { color:#cfcfcf; }
+@media (max-width: 900px) {
+  .trust-inner { grid-template-columns: 1fr; }
+}

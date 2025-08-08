@@ -1,39 +1,73 @@
-.hero-banner {
-  min-height: 80vh;
+.hero {
+  position: relative;
+  min-height: 86vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, var(--color-bg), var(--color-bg-alt), var(--color-bg));
-  background-size: 200% 200%;
-  animation: gradientBG 15s ease infinite;
+  overflow: hidden;
   text-align: center;
-  padding: var(--spacing-lg) 0;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1000px 500px at 80% 10%, rgba(255,140,0,0.15), transparent 60%),
+    radial-gradient(800px 400px at 20% 90%, rgba(255,140,0,0.12), transparent 65%),
+    linear-gradient(90deg, #0C0C11, #15151b, #0C0C11);
+  background-size: 200% 100%;
+  animation: heroGradient 16s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.hero-banner-logo {
-  width: 300px;
-  max-width: 80%;
-  margin-bottom: var(--spacing-lg);
-  transition: transform 0.3s ease;
+.hero-inner { position: relative; z-index: 1; padding: 4rem 0; }
+.hero-logo {
+  width: 220px;
+  max-width: 60%;
+  margin: 0 auto 1.25rem;
+  display: block;
+  filter: drop-shadow(0 10px 30px rgba(255,140,0,0.15));
 }
-.hero-banner-logo:hover {
-  transform: scale(1.05);
-}
-
 .hero-title {
-  font-size: 4rem;
-  color: var(--color-text);
-  margin-bottom: var(--spacing-sm);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 0.75rem;
 }
-
 .hero-subtitle {
-  font-size: 1.5rem;
-  color: var(--color-text);
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  line-height: 1.4;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  color: #ddd;
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.55;
 }
-
-.btn-primary {
-  font-size: 1.125rem;
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.hero-cred {
+  margin-top: .75rem;
+  color: #aaa;
+  font-size: .95rem;
 }
