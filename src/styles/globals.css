@@ -1,0 +1,10 @@
+/* restore pre-change type rhythm */
+html, body { background-color: #0a0a0b; }
+.container { max-width: 1200px; }
+.text-balance { text-wrap: balance; }
+
+/* ensure hero text never overflows */
+h1, .hero-title {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
